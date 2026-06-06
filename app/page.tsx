@@ -31,13 +31,24 @@ setStatus("");
     const formData = new FormData(event.currentTarget);
 
     const data = {
-      name: formData.get("name"),
+      name: formData.get("name"), 
       phone: formData.get("phone"),
       email: formData.get("email"),
       address: formData.get("address"),
       service: formData.get("service"),
       message: formData.get("message"),
-    };
+    }; if (
+  !data.name ||
+  !data.phone ||
+  !data.email ||
+  !data.address ||
+  !data.service ||
+  !data.message
+) {
+  setStatus("Please fill out all fields before submitting.");
+  setIsSubmitting(false);
+  return;
+}
 
     const response = await fetch("/api/quote", {
       method: "POST",
@@ -274,13 +285,20 @@ setStatus("");
 
             <input required name="address" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Property address / area" />
 
-          <select required name="service" defaultValue="" className="w-full rounded-2xl border border-slate-300 px-5 py-4">
-            <option value="" disabled>Select service</option>
-            <option>Standard Cleaning</option>
-            <option>Deep Cleaning</option>
-            <option>Move-In / Move-Out</option>
-            <option>Airbnb Cleaning</option>
-          </select>
+          <select
+  required
+  name="service"
+  defaultValue=""
+  className="w-full rounded-2xl border border-slate-300 px-5 py-4"
+>
+  <option value="" disabled>
+    Select service
+  </option>
+  <option value="Standard Cleaning">Standard Cleaning</option>
+  <option value="Deep Cleaning">Deep Cleaning</option>
+  <option value="Move-In / Move-Out">Move-In / Move-Out</option>
+  <option value="Airbnb Cleaning">Airbnb Cleaning</option>
+</select>
 
             <textarea
              required
