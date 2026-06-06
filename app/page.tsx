@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState, FormEvent } from "react";
 
 const services = [
   ["Standard Cleaning", "Starting at $129"],
@@ -11,9 +11,47 @@ const services = [
 ];
 
 export default function Home() {
-  useEffect(() => {
+   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState("");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+const form = event.currentTarget;
+setIsSubmitting(true);
+setStatus("");
+
+    const formData = new FormData(event.currentTarget);
+
+    const data = {
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      address: formData.get("address"),
+      service: formData.get("service"),
+      message: formData.get("message"),
+    };
+
+    const response = await fetch("/api/quote", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    setIsSubmitting(false);
+
+    if (response.ok) {
+      setStatus("Thank you! Your quote request has been sent.");
+      form.reset();
+    } else {
+      setStatus("Something went wrong. Please try again.");
+    }
+  }
   return (
     <main className="min-h-screen bg-white text-slate-950">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
@@ -222,25 +260,17 @@ export default function Home() {
             </p>
           </div>
 
-          <form className="space-y-4">
-            <input
-              className="w-full rounded-2xl border border-slate-300 px-5 py-4"
-              placeholder="Full name"
-            />
-            <input
-              className="w-full rounded-2xl border border-slate-300 px-5 py-4"
-              placeholder="Phone number"
-            />
-            <input
-              className="w-full rounded-2xl border border-slate-300 px-5 py-4"
-              placeholder="Email address"
-            />
-            <input
-              className="w-full rounded-2xl border border-slate-300 px-5 py-4"
-              placeholder="Property address / area"
-            />
+          <form onSubmit={handleSubmit} className="space-y-4">
 
-            <select className="w-full rounded-2xl border border-slate-300 px-5 py-4">
+            <input name="name" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Full name" />
+
+            <input name="phone" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Phone number" />
+
+            <input name="email" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Email address" />
+
+            <input name="address" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Property address / area" />
+
+            <select name="service" className="w-full rounded-2xl border border-slate-300 px-5 py-4">
               <option>Select service</option>
               <option>Standard Cleaning</option>
               <option>Deep Cleaning</option>
@@ -249,13 +279,23 @@ export default function Home() {
             </select>
 
             <textarea
-              className="min-h-32 w-full rounded-2xl border border-slate-300 px-5 py-4"
-              placeholder="Tell us what you need"
+            name="message"
+            className="min-h-32 w-full rounded-2xl border border-slate-300 px-5 py-4"
+            placeholder="Tell us what you need"
             />
 
-            <button className="w-full rounded-full bg-green-600 px-8 py-4 text-sm font-bold text-white hover:bg-green-700">
-              Submit Quote Request
-            </button>
+            <button
+             disabled={isSubmitting}
+             className="w-full rounded-full bg-green-600 px-8 py-4 text-sm font-bold text-white hover:bg-green-700 disabled:opacity-60"
+             >
+             {isSubmitting ? "Sending..." : "Submit Quote Request"}
+             </button>
+
+            {status && (
+            <p className="text-center text-sm font-semibold text-blue-950">
+            {status}
+  </p>
+)}
           </form>
         </div>
       </section>
