@@ -336,7 +336,7 @@ setStatus("");
     href="tel:3471234567"
     className="mt-3 block text-2xl font-bold text-green-600 hover:text-green-700"
   >
-    (347) 123-4567
+    (347) 813-3519
   </a>
 
   <p className="mt-2 text-slate-600">
