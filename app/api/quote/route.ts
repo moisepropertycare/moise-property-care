@@ -7,7 +7,20 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const { name, phone, email, address, service, message } = body;
+    const {
+  name,
+  phone,
+  email,
+  address,
+  service,
+  propertyType,
+  bedrooms,
+  bathrooms,
+  condition,
+  timeframe,
+  message,
+   } = body;
+
 
     if (!name || !phone || !email || !service) {
       return NextResponse.json(
@@ -27,12 +40,31 @@ New quote request from Moise Property Care website:
 Name: ${name}
 Phone: ${phone}
 Email: ${email}
-Address / Area: ${address || "Not provided"}
-Service: ${service}
+
+Service:
+${service}
+
+Property Type:
+${propertyType}
+
+Bedrooms:
+${bedrooms}
+
+Bathrooms:
+${bathrooms}
+
+Property Condition:
+${condition}
+
+Requested Timeframe:
+${timeframe}
+
+Address / Area:
+${address || "Not provided"}
 
 Message:
 ${message || "No message provided"}
-      `,
+`,
     });
 
     await resend.emails.send({
