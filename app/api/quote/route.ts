@@ -36,25 +36,40 @@ ${message || "No message provided"}
     });
 
     await resend.emails.send({
-      from: "Moise Property Care <quotes@moisepropertycare.com>",
-      to: email,
-      subject: "We received your quote request",
-      replyTo: process.env.QUOTE_TO_EMAIL as string,
-      text: `
-Hi ${name},
+  from: "Moise Property Care <quotes@moisepropertycare.com>",
+  to: email,
+  subject: "We received your quote request",
+  replyTo: process.env.QUOTE_TO_EMAIL as string,
+  html: `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #0f172a;">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <img src="https://www.moisepropertycare.com/logo.png" alt="Moise Property Care" style="max-width: 160px; height: auto;" />
+      </div>
 
-Thank you for contacting Moise Property Care.
+      <h2 style="color: #172554; margin-bottom: 12px;">We received your quote request</h2>
 
-We received your quote request and will review the details shortly. We'll contact you as soon as possible to confirm availability, pricing, and next steps.
+      <p>Hi ${name},</p>
 
-Service requested: ${service}
-Area / Address: ${address || "Not provided"}
+      <p>
+        Thank you for contacting <strong>Moise Property Care</strong>.
+        We received your quote request and will review the details shortly.
+      </p>
 
-Thank you,
-Moise Property Care
-Brooklyn & Lower Manhattan
-      `,
-    });
+      <p>
+        We’ll contact you as soon as possible to confirm availability, pricing, and next steps.
+      </p>
+
+      <div style="background: #f8fafc; border-radius: 16px; padding: 16px; margin: 24px 0;">
+        <p><strong>Service requested:</strong> ${service}</p>
+        <p><strong>Area / Address:</strong> ${address || "Not provided"}</p>
+      </div>
+
+      <p>Thank you,<br /><strong>Moise Property Care</strong></p>
+
+      <p style="color: #16a34a; font-weight: bold;">Brooklyn & Lower Manhattan</p>
+    </div>
+  `,
+});
 
     return NextResponse.json({ success: true });
   } catch (error) {
