@@ -12,8 +12,12 @@ const services = [
 
 export default function Home() {
    useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+  }
+
+  window.scrollTo(0, 0);
+}, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState("");
@@ -262,27 +266,28 @@ setStatus("");
 
           <form onSubmit={handleSubmit} className="space-y-4">
 
-            <input name="name" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Full name" />
+            <input required name="name" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Full name" />
 
-            <input name="phone" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Phone number" />
+            <input required name="phone" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Phone number" />
 
-            <input name="email" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Email address" />
+            <input required name="email" type="email" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Email address" />
 
-            <input name="address" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Property address / area" />
+            <input required name="address" className="w-full rounded-2xl border border-slate-300 px-5 py-4" placeholder="Property address / area" />
 
-            <select name="service" className="w-full rounded-2xl border border-slate-300 px-5 py-4">
-              <option>Select service</option>
-              <option>Standard Cleaning</option>
-              <option>Deep Cleaning</option>
-              <option>Move-In / Move-Out</option>
-              <option>Airbnb Cleaning</option>
-            </select>
+          <select required name="service" defaultValue="" className="w-full rounded-2xl border border-slate-300 px-5 py-4">
+            <option value="" disabled>Select service</option>
+            <option>Standard Cleaning</option>
+            <option>Deep Cleaning</option>
+            <option>Move-In / Move-Out</option>
+            <option>Airbnb Cleaning</option>
+          </select>
 
             <textarea
-            name="message"
-            className="min-h-32 w-full rounded-2xl border border-slate-300 px-5 py-4"
-            placeholder="Tell us what you need"
-            />
+             required
+             name="message"
+             className="min-h-32 w-full rounded-2xl border border-slate-300 px-5 py-4"
+             placeholder="Tell us what you need"
+           />
 
             <button
              disabled={isSubmitting}
