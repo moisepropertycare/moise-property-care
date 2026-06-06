@@ -1,65 +1,285 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect } from "react";
+
+const services = [
+  ["Standard Cleaning", "Starting at $129"],
+  ["Deep Cleaning", "Starting at $199"],
+  ["Move-In / Move-Out", "Starting at $249"],
+  ["Airbnb Cleaning", "Custom quote"],
+];
 
 export default function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <main className="min-h-screen bg-white text-slate-950">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+          src="/logo.png"
+          alt="Moise Property Care"
+          width={120}
+          height={70}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+        <div className="hidden gap-8 text-sm font-semibold text-slate-700 md:flex">
+          <a href="#services">Services</a>
+          <a href="#why-us">Why Us</a>
+          <a href="#quote">Quote</a>
+        </div>
+
+        <a
+          href="#quote"
+          className="rounded-full bg-blue-950 px-6 py-3 text-sm font-bold text-white hover:bg-blue-900"
+        >
+          Get Quote
+        </a>
+      </nav>
+
+      <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2">
+        <div>
+          <p className="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-green-600">
+            Residential • Airbnb • Move-Out Cleaning
           </p>
+
+          <h1 className="text-5xl font-extrabold leading-tight tracking-tight text-blue-950 md:text-7xl">
+            Premium Cleaning Services For Brooklyn & Lower Manhattan Homes.
+          </h1>
+
+          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+            Professional cleaning services throughout Brooklyn and Lower Manhattan.
+            Reliable cleaners, clear communication, and spotless results every time.
+          </p>
+
+          <div className="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-slate-700">
+            <span className="rounded-full bg-slate-100 px-4 py-2">
+              Simple booking
+            </span>
+            <span className="rounded-full bg-slate-100 px-4 py-2">
+              Clear pricing
+            </span>
+            <span className="rounded-full bg-slate-100 px-4 py-2">
+              Reliable cleaners
+            </span>
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-5 text-sm font-semibold text-slate-700">
+            <span>✓ Trusted Service</span>
+            <span>✓ Satisfaction Guaranteed</span>
+            <span>✓ Brooklyn & Manhattan</span>
+          </div>
+
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <a
+              href="#quote"
+              className="rounded-full bg-green-600 px-8 py-4 text-center text-sm font-bold text-white hover:bg-green-700"
+            >
+              Request a Free Quote
+            </a>
+
+            <a
+              href="#services"
+              className="rounded-full border border-slate-300 px-8 py-4 text-center text-sm font-bold text-blue-950 hover:border-blue-950"
+            >
+              View Services
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        <div className="relative min-h-[620px] overflow-hidden rounded-[2rem] shadow-xl">
+          <Image
+            src="/images/hero-cleaning.jpg"
+            alt="Clean modern apartment interior"
+            fill
+            className="object-cover"
+            priority
+          />
+
+          <div className="absolute inset-0 bg-blue-950/5" />
+
+          <div className="absolute bottom-6 left-6 right-6 rounded-3xl bg-white/90 p-6 backdrop-blur">
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-green-600">
+              Serving Brooklyn & Lower Manhattan
+            </p>
+
+            <h2 className="mt-3 text-xl font-bold text-blue-950">
+              Premium cleaning for modern city living.
+            </h2>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="bg-slate-50 px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-sm font-bold uppercase tracking-[0.3em] text-green-600">
+            Our Services
+          </p>
+
+          <h2 className="mt-4 text-4xl font-extrabold text-blue-950">
+            Cleaning services for every property.
+          </h2>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-4">
+            {services.map(([service, price]) => (
+              <div
+                key={service}
+                className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200"
+              >
+                <h3 className="text-xl font-bold text-blue-950">{service}</h3>
+                <p className="mt-2 text-sm font-bold text-green-600">{price}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  Professional, reliable cleaning designed to make your space
+                  feel fresh, cared for, and ready to use.
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="why-us" className="px-6 py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-3">
+          {[
+            [
+              "Reliable Service",
+              "We focus on showing up, communicating clearly, and doing the job right.",
+            ],
+            [
+              "Easy Quote Request",
+              "Request cleaning online without complicated back-and-forth.",
+            ],
+            [
+              "Property Care Mindset",
+              "We treat every space with respect, care, and attention to detail.",
+            ],
+          ].map(([title, text]) => (
+            <div key={title} className="rounded-3xl bg-blue-950 p-8 text-white">
+              <h3 className="text-2xl font-bold">{title}</h3>
+              <p className="mt-4 leading-7 text-blue-100">{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+      
+
+            <section className="bg-white px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-sm font-bold uppercase tracking-[0.3em] text-green-600">
+            Service Areas
+          </p>
+
+          <h2 className="mt-4 text-4xl font-extrabold text-blue-950">
+            Proudly Serving Brooklyn & Lower Manhattan
+          </h2>
+
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            <div className="rounded-3xl bg-slate-50 p-8">
+              <h3 className="text-2xl font-bold text-blue-950">Brooklyn</h3>
+
+              <ul className="mt-6 space-y-3 text-slate-700">
+                <li>Brooklyn Heights</li>
+                <li>Downtown Brooklyn</li>
+                <li>DUMBO</li>
+                <li>Williamsburg</li>
+                <li>Park Slope</li>
+                <li>Greenpoint</li>
+              </ul>
+            </div>
+
+            <div className="rounded-3xl bg-slate-50 p-8">
+              <h3 className="text-2xl font-bold text-blue-950">
+                Lower Manhattan
+              </h3>
+
+              <ul className="mt-6 space-y-3 text-slate-700">
+                <li>Financial District</li>
+                <li>Tribeca</li>
+                <li>SoHo</li>
+                <li>Chinatown</li>
+                <li>Lower East Side</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="quote" className="bg-slate-50 px-6 py-24">
+        <div className="mx-auto grid max-w-6xl gap-10 rounded-[2rem] bg-white p-8 shadow-xl ring-1 ring-slate-200 lg:grid-cols-2 lg:p-12">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-green-600">
+              Request a Quote
+            </p>
+
+            <h2 className="mt-4 text-4xl font-extrabold text-blue-950">
+              Ready for a cleaner space?
+            </h2>
+
+            <p className="mt-4 text-slate-600">
+              Tell us about your property and we’ll contact you to confirm
+              pricing, availability, and service details.
+            </p>
+          </div>
+
+          <form className="space-y-4">
+            <input
+              className="w-full rounded-2xl border border-slate-300 px-5 py-4"
+              placeholder="Full name"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <input
+              className="w-full rounded-2xl border border-slate-300 px-5 py-4"
+              placeholder="Phone number"
+            />
+            <input
+              className="w-full rounded-2xl border border-slate-300 px-5 py-4"
+              placeholder="Email address"
+            />
+            <input
+              className="w-full rounded-2xl border border-slate-300 px-5 py-4"
+              placeholder="Property address / area"
+            />
+
+            <select className="w-full rounded-2xl border border-slate-300 px-5 py-4">
+              <option>Select service</option>
+              <option>Standard Cleaning</option>
+              <option>Deep Cleaning</option>
+              <option>Move-In / Move-Out</option>
+              <option>Airbnb Cleaning</option>
+            </select>
+
+            <textarea
+              className="min-h-32 w-full rounded-2xl border border-slate-300 px-5 py-4"
+              placeholder="Tell us what you need"
+            />
+
+            <button className="w-full rounded-full bg-green-600 px-8 py-4 text-sm font-bold text-white hover:bg-green-700">
+              Submit Quote Request
+            </button>
+          </form>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <footer className="bg-white px-6 py-8 text-center">
+  <p className="text-3xl font-bold text-blue-950">
+    Get a Free Quote Today
+  </p>
+
+  <a
+    href="tel:3471234567"
+    className="mt-3 block text-2xl font-bold text-green-600 hover:text-green-700"
+  >
+    (347) 123-4567
+  </a>
+
+  <p className="mt-2 text-slate-600">
+    Brooklyn & Lower Manhattan
+  </p>
+
+  <p className="mt-6 text-sm text-slate-500">
+    © 2026 Moise Property Care. All rights reserved.
+  </p>
+</footer>
+  </main>
   );
 }
