@@ -103,7 +103,7 @@ setStatus("");
 
 <div className="flex items-center gap-3">
   <a
-    href="tel:347XXXXXXX"
+    href="tel:3478133519"
     className="rounded-full border border-slate-300 px-5 py-3 text-sm font-bold text-blue-950 hover:bg-slate-100"
   >
     Call Now
