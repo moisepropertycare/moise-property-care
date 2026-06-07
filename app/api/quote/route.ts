@@ -71,7 +71,7 @@ ${message || "No message provided"}
   from: "Moise Property Care <quotes@moisepropertycare.com>",
   to: email,
   subject: "We received your quote request",
-  replyTo: process.env.QUOTE_TO_EMAIL as string,
+  replyTo: "quotes@moisepropertycare.com",
   html: `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #0f172a;">
       <div style="text-align: center; margin-bottom: 24px;">
