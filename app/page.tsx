@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useEffect, useState, FormEvent } from "react";
 
 const services = [
-  ["Standard Cleaning", "Starting at $129"],
-  ["Deep Cleaning", "Starting at $199"],
-  ["Move-In / Move-Out", "Starting at $249"],
+  ["Standard Cleaning", "Starting at $149"],
+  ["Deep Cleaning", "Starting at $249"],
+  ["Move-In / Move-Out", "Starting at $349"],
   ["Airbnb Cleaning", "Custom quote"],
 ];
 
