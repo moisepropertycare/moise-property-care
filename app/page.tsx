@@ -345,7 +345,7 @@ setStatus("");
       required
       name="address"
       className="w-full rounded-2xl border border-slate-300 px-5 py-4"
-      placeholder="Neighborhood or address"
+      placeholder="ZIP Code"
     />
   </div>
 
